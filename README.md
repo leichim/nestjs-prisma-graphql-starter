@@ -91,6 +91,7 @@ query Refresh {
     expiresAt
   }
 }
+```
 
 Logout a user by clearing the refresh cookie:
 
