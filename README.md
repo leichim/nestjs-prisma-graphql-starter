@@ -1,7 +1,7 @@
 ## Description
 Simple starter boilerplate for GraphQL back-ends using [NestJS](https://github.com/nestjs/nest) and [Prisma](https://prisma.io) with the Code First approach.
 * Using JWT + RefreshCookie as Auth approach.
-* All mutations and queries are guarded by default, except for signup and login mutations
+* All mutations and queries are guarded by default, except for signup and login mutations.
 
 ## Installation
 Before installation, define the following .env variables:
@@ -12,18 +12,22 @@ Before installation, define the following .env variables:
 * COOKIE_SECRET - The secret for the Refreshcookie
 * JWT_REFRESH_SECRET - The secret for the JWT Refresh Token
 
-Modify datasource db in /src/schema.prisma to match your database type.
+Then, Modify datasource db in /src/schema.prisma to match your database type.
+
+Subsequently, run:
 
 ```bash
 $ npm install
 ```
 
-Prisma migrate for relational databases
+Prisma migrate for relational databases:
+
 ```bash
-$ npx prisma migrate
+$ npx prisma migrate dev
 ```
 
-Generate the prisma client
+Generate the prisma client:
+
 ```bash
 $ npx prisma generate
 ```
@@ -41,6 +45,7 @@ $ npm run start:prod
 ```
 
 ## Test
+
 ```bash
 # unit tests
 $ npm run test
@@ -53,9 +58,11 @@ $ npm run test:cov
 ```
 
 ## GraphQL Endpoints
+
 The application exposes the following mutations and queries, also available in the GraphQL playground when running the application (/graphql). In the below example, they are named to their respective functions
 
 Login with email and password and return the accesstoken (don't forget to define your query variables):
+
 ```graphql
 mutation Login($login: AuthInput!) {
   login(data: $login) {
@@ -63,8 +70,10 @@ mutation Login($login: AuthInput!) {
     expiresAt
   }
 }
+```
 
-Registers a user with an unique email (don't forget to define your query variables)
+Registers a user with an unique email (don't forget to define your query variables):
+
 ```graphql
 mutation Register($registration: AuthInput!) {
   register(data: $registration) {
@@ -73,7 +82,8 @@ mutation Register($registration: AuthInput!) {
 }
 ```
 
-Receives a new JWT token when a valid refresh cookie is present
+Receives a new JWT token when a valid refresh cookie is present:
+
 ```graphql
 query Refresh {
   refresh {
@@ -82,7 +92,8 @@ query Refresh {
   }
 }
 
-Logout a user by clearing the refresh cookie
+Logout a user by clearing the refresh cookie:
+
 ```graphql
 query Logout {
   logout {
@@ -92,6 +103,7 @@ query Logout {
 ```
 
 General public query:
+
 ```graphql
 query Welcome {
   welcome
@@ -99,12 +111,9 @@ query Welcome {
 ```
 
 Only accessible when passing a valid JWT token:
+
 ```graphql
 query Goodbye {
   goodbye
 }
 ```
-
-
-## License
-Nest is [MIT licensed](LICENSE).
